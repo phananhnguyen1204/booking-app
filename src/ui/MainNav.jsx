@@ -82,7 +82,7 @@ function MainNav() {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/bookings">
+          <StyledNavLink to="/settings">
             <HiOutlineCog6Tooth></HiOutlineCog6Tooth>
             <span>Settings</span>
           </StyledNavLink>
