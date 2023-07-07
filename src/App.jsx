@@ -14,10 +14,10 @@ import AppLayout from "./ui/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient({
-  defaultOption: {
+  defaultOptions: {
     queries: {
       //the amount of time data in the cache will stay fresh(valid) until it refresh again
-      staleTime: 60 * 1000,
+      staleTime: 0,
     },
   },
 });
