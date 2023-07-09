@@ -13,6 +13,12 @@ export function useBookings() {
       ? null
       : { field: "status", value: filterValue };
   // { field: "totalPrice", value: 5000, method: "gte" };
+
+  //SORT
+  const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
+  const [field, direction] = sortByRaw.split("-");
+  const sortBy = { field, direction };
+
   const {
     isLoading,
     data: bookings,
@@ -20,8 +26,8 @@ export function useBookings() {
   } = useQuery({
     //like dependency array of react query
     //whenever filter variable changes, React Query will re-fetch the data.
-    queryKey: ["bookings", filter],
-    queryFn: () => getBookings({ filter }),
+    queryKey: ["bookings", filter, sortBy],
+    queryFn: () => getBookings({ filter, sortBy }),
   });
 
   return { isLoading, error, bookings };
