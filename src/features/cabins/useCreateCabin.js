@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { createEditCabin } from "../../../../17-the-wild-oasis/final-3-after-react-query/src/services/apiCabins";
+import { createEditCabin } from "../../services/apiCabins";
 
 export function useCreateCabin() {
   const queryClient = useQueryClient();
