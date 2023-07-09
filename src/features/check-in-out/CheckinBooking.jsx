@@ -35,7 +35,7 @@ function CheckinBooking() {
   const { checkin, isCheckingIn } = useCheckin();
   const { settings, isLoading: isLoadingSettings } = useSettings();
 
-  if (isLoading) return <Spinner></Spinner>;
+  if (isLoading || isLoadingSettings) return <Spinner></Spinner>;
 
   const {
     id: bookingId,
@@ -51,7 +51,18 @@ function CheckinBooking() {
 
   function handleCheckin() {
     if (!confirmPaid) return;
-    checkin(bookingId);
+    if (addBreakfast) {
+      checkin({
+        bookingId,
+        breakfast: {
+          hasBreakfast: true,
+          extrasPrice: optionalBreakfastPrice,
+          totalPrice: totalPrice + optionalBreakfastPrice,
+        },
+      });
+    } else {
+      checkin({ bookingId, breakfast: {} });
+    }
   }
 
   return (
@@ -87,7 +98,13 @@ function CheckinBooking() {
           disabled={confirmPaid || isCheckingIn}
         >
           Confirm that {guests.fullName} has paid the total amount of{" "}
-          {formatCurrency(totalPrice)}
+          {!addBreakfast
+            ? formatCurrency(totalPrice)
+            : `${formatCurrency(
+                totalPrice + optionalBreakfastPrice
+              )} (${formatCurrency(totalPrice)} + ${formatCurrency(
+                optionalBreakfastPrice
+              )})`}
         </CheckBox>
       </Box>
 
