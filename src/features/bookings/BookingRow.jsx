@@ -94,6 +94,7 @@ function BookingRow({
             See details
           </Menus.Button>
 
+          {/* Client have not yet confirmed */}
           {status === "unconfirmed" && (
             <Menus.Button
               icon={<HiArrowDownOnSquare></HiArrowDownOnSquare>}
