@@ -12,7 +12,7 @@ export function useLogin() {
     onSuccess: (user) => {
       //manually set data into React Query Cache
 
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
       // queryClient.setQueryData(["user"], user);
     },
     onError: (err) => {
