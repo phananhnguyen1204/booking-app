@@ -15,6 +15,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +33,13 @@ function App() {
       <GlobalStyles></GlobalStyles>
       <BrowserRouter>
         <Routes>
-          <Route element={<AppLayout></AppLayout>}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout></AppLayout>
+              </ProtectedRoute>
+            }
+          >
             <Route
               index
               element={<Navigate replace to="dashboard"></Navigate>}
